@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Teachy</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous">
+      <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+      <!-- Navigation bar -->
+      <div class="container">
+            <nav>
+                  <input type="checkbox" id="nav" class="hidden">
+                  <label for="nav" class="nav-btn">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                  </label>
+                  <div class="logo">
+                        <a href="/">TEACHY</a>
+                  </div>
+                  <div class="nav-wrapper">
+                        <ul>
+                              <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
+                              <!-- <% if (!user) { %>
+                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <% } else { %>
+                              <li><a href="/manage/<%= user.id %>"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <%} %> -->
+                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href="/registro"> <i class="fas fa-address-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/about"><i class="fas fa-chart-pie"></i><span> </span>About</a></li>
+                              <% if (!user) { %>
+                              <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
+                              <% } else { %>
+                              <li class="itemsLike"> <i class="fas fa-user-circle"></i><%= user.name %></li>
+                              <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
+                              <%} %>
+                        </ul>
+                  </div>
+            </nav>
+      </div>
+    
+   
+
+
+      <!-- Testo benvenuto-->
+      <section class="welcome" id="welcomeText">
+            <% if (!user) { %>
+            Benvenuto in Teachy! Fai il <a href="/users/login">Login</a> o <a href="/users/register">registrati</a>.
+            <%} else {%>
+            Bentornato,
+            <%= user.username %>.
+            <%} %>
+      </section>
+      <!-- <section class="welcome" id="welcomeText"> Benvenuto in Teachy. <span></span>   Il tuo assistente scolastico.</section> -->
+
+      <!-- Layout responsivo a "carte" -->
+      <section class="cardContainer">
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>Gestisci</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p> Gestisci le tue classi. <br><br></p>
+                        </div>
+                        <a href="/manage" class="button">Vai</a>
+                  </div>
+            </div>
+
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>Random Picker</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p>Giorno dell'interrogazione? Lascia che il destino scelga.</p>
+                        </div>
+                        <a href="#" class="button">Vai</a>
+                  </div>
+            </div>
+
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>Registro</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p>Aggiungi i voti nel tuo registro personale.</p>
+                        </div>
+                        <a href="#" class="button">Vai</a>
+                  </div>
+            </div>
+
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>About</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p>Visualizza statistiche.<br><br></p>
+                        </div>
+                        <a href="#" class="button">Vai</a>
+                  </div>
+            </div>
+
+      </section>
+</body>
+</html>

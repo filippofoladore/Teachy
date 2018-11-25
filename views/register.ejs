@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Teachy</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <link rel="stylesheet" href="/css/style.css">   
+</head>
+<body>
+      <!-- Navigation bar -->
+      <div class="container">
+            <nav>
+                  <input type="checkbox" id="nav" class="hidden">
+                  <label for="nav" class="nav-btn">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                  </label>
+                  <div class="logo">
+                        <a href="/">TEACHY</a>
+                  </div>
+                  <div class="nav-wrapper">
+                        <ul>
+                              <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
+                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href=/registro><i class="fas fa-address-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/about"><i class="fas fa-chart-pie"></i><span> </span>About</a></li> 
+                              <li><a class="signin link" href="/users/register"><i class="fas fa-sign-in-alt"></i><span> </span>Login</a></li>
+                              <li><a class="signin link notVisible" href="/users/logout"><i class="fas fa-sign-out-alt"></i><span> </span>Logout</a></li>
+                   </ul>
+                  </div>
+            </nav> 
+      </div>
+      <!-- Pop up login/register -->
+      <div class="modal">
+            <div class="modeSelector">
+                  <ul class="switcher">
+                        <li><a href="/users/login" id="switcherLogin">Login</a></li>
+                        <li><a href="/users/register" id="switcherSignup">Iscriviti</a></li>
+                  </ul>
+      
+                 <div id="signup">
+                    <form class="form" action="/users/register" method="POST">
+                        <p class="spazioCampi">
+                            <label class="miniThumb username">Name</label>
+                            <input class="widthChanger paddingChanger borderChanger" name="name" type="text" placeholder="Nome">
+                        </p>
+                        <p class="spazioCampi">
+                            <label class="miniThumb email">E-mail</label>
+                            <input class="widthChanger paddingChanger borderChanger" name="email" type="email" placeholder="E-mail">
+                        </p>
+                        <p class="spazioCampi">
+                            <label class="miniThumb username">Username</label>
+                            <input class="widthChanger paddingChanger borderChanger" name="username" type="text" placeholder="Username">
+                        </p>
+                
+                        <p class="spazioCampi">
+                            <label class="miniThumb password">Password</label>
+                            <input class="widthChanger paddingChanger borderChanger" name="password" type="password" placeholder="Password">
+                            <a href="#0" class="hidePassword">Show</a>
+                        </p>
+
+                        <p class="spazioCampi">
+                              <label class="miniThumb password">Conferma password</label>
+                              <input class="widthChanger paddingChanger borderChanger" name="password2" type="password" placeholder="Conferma password">
+                              <a href="#0" class="hidePassword">Show</a>
+                        </p>
+
+                        <p class="spazioCampi">
+                            <input class="widthChanger paddingChanger" type="submit" id="signup-submit" value="Crea l'account">
+                        </p>
+                    </form>
+                </div> 
+            </div>
+      </div>
+</body>
+<script type="text/javascript">
+      $('#switcherSignup').css('background', '#74dd74');
+      $('#switcherLogin').css('background', '#c7e5c7');
+</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Teachy</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous">
+      <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+      <!-- Navigation bar -->
+      <div class="container">
+            <nav>
+                  <input type="checkbox" id="nav" class="hidden">
+                  <label for="nav" class="nav-btn">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                  </label>
+                  <div class="logo">
+                        <a href="/">TEACHY</a>
+                  </div>
+                  <div class="nav-wrapper">
+                        <ul>
+                              <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
+                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <!-- wrench  cog -->
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href=/registro> <i class="fas fa-address-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/about"><i class="fas fa-chart-pie"></i><span> </span>About</a></li>
+
+                              <% if (!user) { %>
+                              <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span>
+                                          </span>Login</a></li>
+                              <% } else { %>
+                              <li class="itemsLike"> <i class="fas fa-user-circle"></i> <%= user.name %> </li>
+                              <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span>
+                                          </span>Logout</a></li>
+                              <%} %>
+                        </ul>
+                  </div>
+            </nav>
+      </div>
+            <section class="welcome" id="welcomeText">
+                  <% if (!user) { %>
+                        Non hai fatto il login o non possiedi un account? <br>Fai il <a href="/users/login">Login</a> o <a href="/users/register">registrati</a>.
+                  <%} else { %>
+                        Ciao, <%= user.username %>. Gestisci le tue classi.
+                  <%} %>
+            </section>
+            
+            <form  <% if (!user) { %>
+                        action="/manage/add" 
+                  <%} else { %>
+                        action="/manage/add/<%= user.id %>" 
+                  <%} %> method="POST">
+                  <label for="">Aggiungi una classe</label>
+                  <select name="cNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                  </select>
+      
+                  <select name="cSez">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                  </select>
+                  <input type="submit" value="Add">
+            </form>
+
+            <ul>
+                  <% for(var i = 0; i<(user.classes.length); i++) { %>
+                        <li> <%= user.classes[i].cName %> </li>
+                  <% } %>
+            </ul>
+</body>   
+</html>     
+     

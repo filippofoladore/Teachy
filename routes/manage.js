@@ -23,8 +23,8 @@ router.post('/add/:id', function(req,res){
     }}
   );
 })
-  
 
+router.get('/class/:id')
 
 router.get('/', function(req,res){
   res.render('manage');

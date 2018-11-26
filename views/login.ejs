@@ -55,7 +55,8 @@
                               <p class="spazioCampi">
                                     <input class="widthChanger paddingChanger borderChanger" name="password" type="password"
                                           placeholder="Password">
-                                    <a href="#0" class="hidePassword">Show</a>  
+                                    <!-- <a href="#0" class="hidePassword">Show</a>   -->
+                                    <a href="#0" class="hidePassword"><i class="eye fas fa-eye"></i></a> 
                               </p>
       
                               <p class="spazioCampi">
@@ -67,6 +68,13 @@
 </body>
 <script type="text/javascript">
       $('#switcherLogin').css('background', '#74dd74');
-      $('#switcherSignup').css('background', '#c7e5c7');
+            $('#switcherSignup').css('background', '#c7e5c7');
+
+            $('.hidePassword').on('click', function () {
+                  var $this = $(this), $psw = $this.prev('input');
+                  ('password' == $psw.attr('type')) ? $psw.attr('type', 'text') : $psw.attr('type', 'password');
+                  $('.eye').toggleClass('fa-eye fa-eye-slash');
+            });
 </script>
+
 </html>

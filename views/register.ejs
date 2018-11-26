@@ -7,7 +7,9 @@
       <title>Teachy</title>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+     
       <link rel="stylesheet" href="/css/style.css">   
 </head>
 <body>
@@ -45,30 +47,23 @@
                   </ul>
       
                  <div id="signup">
-                    <form class="form" action="/users/register" method="POST">
-                        <p class="spazioCampi">
-                            <label class="miniThumb username">Name</label>
-                            <input class="widthChanger paddingChanger borderChanger" name="name" type="text" placeholder="Nome">
+                    <form class="form" action="/users/register" method="POST" id="signupForm">
+                        <p class="spazioCampi">  
+                              <input class="widthChanger paddingChanger borderChanger" name="name" type="text" placeholder="Nome" required id="name" minlength="3">
                         </p>
-                        <p class="spazioCampi">
-                            <label class="miniThumb email">E-mail</label>
-                            <input class="widthChanger paddingChanger borderChanger" name="email" type="email" placeholder="E-mail">
+                        <p class="spazioCampi">   
+                            <input class="widthChanger paddingChanger borderChanger" name="email" id="emailField" type="email" placeholder="E-mail">
                         </p>
-                        <p class="spazioCampi">
-                            <label class="miniThumb username">Username</label>
+                        <p class="spazioCampi">  
                             <input class="widthChanger paddingChanger borderChanger" name="username" type="text" placeholder="Username">
                         </p>
                 
-                        <p class="spazioCampi">
-                            <label class="miniThumb password">Password</label>
-                            <input class="widthChanger paddingChanger borderChanger" name="password" type="password" placeholder="Password">
-                            <a href="#0" class="hidePassword">Show</a>
+                        <p class="spazioCampi">  
+                            <input class="widthChanger paddingChanger borderChanger psw" name="password" type="password" placeholder="Password">
                         </p>
 
-                        <p class="spazioCampi">
-                              <label class="miniThumb password">Conferma password</label>
-                              <input class="widthChanger paddingChanger borderChanger" name="password2" type="password" placeholder="Conferma password">
-                              <a href="#0" class="hidePassword">Show</a>
+                        <p class="spazioCampi">   
+                              <input class="widthChanger paddingChanger borderChanger psw" name="password2" type="password" placeholder="Conferma password">
                         </p>
 
                         <p class="spazioCampi">
@@ -83,4 +78,5 @@
       $('#switcherSignup').css('background', '#74dd74');
       $('#switcherLogin').css('background', '#c7e5c7');
 </script>
+<script type="text/javascript" src="/js/form.js"></script>
 </html>

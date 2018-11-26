@@ -80,7 +80,15 @@
             </form>
             <ul>
                   <% for(var i = 0; i<(user.classes.length); i++) { %>
-                        <li> <%= user.classes[i].cName %> </li>
+                        <li> <%= user.classes[i].cName %> 
+                              <form  <% if (!user) { %>
+                                    action="/manage/class" 
+                              <%} else { %>
+                                    action="/manage/class/<%= user.classes[i].id %>" 
+                              <%} %> method="GET">
+                              <input type="submit" value="Go">
+                        </form>
+                        </li>
                   <% } %>
             </ul>
 </body>   

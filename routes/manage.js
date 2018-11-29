@@ -24,7 +24,33 @@ router.post('/add/:id', function(req,res){
   );
 })
 
-router.get('/class/:id')
+router.post('/class/:id', function(req,res){
+    Teacher.findOne(
+      {"classes._id": req.params.id},
+      'classes',
+      function (err,doc){
+        if (err) {
+          res.send('qualcosa è andato storto');
+        } else {
+          // res.send(doc);
+          console.log(doc);
+
+          // console.log(JSON.stringify(sub));
+        }
+      }
+    )
+});
+
+router.post('/classes/:id', function(req,res){
+  Teacher.findOne(
+    {_id: req.user.id,  "classes._id": req.params.id},
+    {"classes.$":1}, 
+    (err,result) => {
+      if (err) {console.log("hey, un errore")}
+      else {res.json(result);console.log(result)}
+    }
+  )
+});
 
 router.get('/', function(req,res){
   res.render('manage');

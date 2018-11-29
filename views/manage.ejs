@@ -49,6 +49,7 @@
                   </div>
             </nav>
       </div>
+      <aside id="main">
             <section class="welcome" id="welcomeText">
                   <% if (!user) { %>
                         Non hai fatto il login o non possiedi un account? <br>Fai il <a href="/users/login">Login</a> o <a href="/users/register">registrati</a>.
@@ -79,18 +80,30 @@
                   <input type="submit" value="Add">
             </form>
             <ul>
-                  <% for(var i = 0; i<(user.classes.length); i++) { %>
-                        <li> <%= user.classes[i].cName %> 
-                              <form  <% if (!user) { %>
-                                    action="/manage/class" 
-                              <%} else { %>
-                                    action="/manage/class/<%= user.classes[i].id %>" 
-                              <%} %> method="GET">
-                              <input type="submit" value="Go">
-                        </form>
-                        </li>
-                  <% } %>
+                  <div id="classList">
+                              <% for(var i = 0; i<(user.classes.length); i++) { %>
+                                    <li id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %> 
+                                          <!-- <form  <% if (!user) { %>
+                                                action="/manage/class" 
+                                          <%} else { %>
+                                                action="/manage/class/<%= user.classes[i].id %>" 
+                                          <%} %> method="POST">
+                                          <input type="submit" value="Go">
+                                    </form> -->
+                                    </li>
+                              <% } %>
+                  </div>
+                  
             </ul>
+      </aside>
+           <div id="dataDiv">
+                 
+           </div>
+
+           <div id="ajaxDiv">
+                Ajax,  
+           </div>
 </body>   
+<script src="/js/manageCode.js"></script>
 </html>     
      

@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
+const favicon = require('serve-favicon')
 
 mongoose.connect(config.database);
 let db = mongoose.connection;
@@ -35,6 +36,7 @@ app.set('view engine', 'ejs');
 //carica body parser per leggere i dati
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(favicon(path.join(__dirname, 'public', '/img/favicon.ico')));
 
 
 //setta la cartella public per i css/js/img

@@ -41,6 +41,26 @@ router.post('/class/:id', function(req,res){
     )
 });
 
+router.post('/addStudent/:id', function(req,res){
+  var id = req.params.id; var nome = req.body.name; var cognome = req.body.lname; var sesso = req.body.gender;
+  var classId = req.body.classid;
+  console.log("id user: "+id);
+  console.log("id classe: "+classId);
+  var data = {name: nome, lname : cognome, gender : sesso};
+  console.log(data);
+  console.log("omegalul si parte");
+  Teacher.findOneAndUpdate(
+    {_id: id, "classes._id": classId},
+    {$push: {'classes.$.student': data}},
+    {"classes.$":1},
+    (err,result) => {
+      if (err) {console.log("omegaerrore"); console.log(err)}
+      else {res.json(result); console.log(result)}
+    }
+  );
+  
+});
+
 router.post('/classes/:id', function(req,res){
   Teacher.findOne(
     {_id: req.user.id,  "classes._id": req.params.id},
@@ -51,6 +71,8 @@ router.post('/classes/:id', function(req,res){
     }
   )
 });
+
+
 
 router.get('/', function(req,res){
   res.render('manage');

@@ -1,0 +1,35 @@
+db.teachers.update(
+  { _id: ObjectId("5bf98ef65a3c5d0900043ac0"), "classes._id": ObjectId("5bf98f0b5a3c5d0900043ac1") },
+  { $push: { "classes.$.student": {
+"name":"Test",
+"lname" : "Test",
+"gender" : "F"} }}
+)
+
+
+
+$("#students").append("<p>Studente: "+data['classes'][0]['student'][0]['name']+" "+
+                data['classes'][0]['student'][0]['lname']+" ("+
+                data['classes'][0]['student'][0]['gender']+")"+ "</p");
+
+db.teachers.update(
+  { _id: ObjectId("5bf98ef65a3c5d0900043ac0"), "classes._id": ObjectId("5bf98f0b5a3c5d0900043ac1") },
+  { $push: { "classes.$.student": {
+"name":"qwe",
+"lname" : "dd",
+"gender" : "F"} }},
+{$upsert:"true"}
+)
+
+
+Teacher.findOneAndUpdate(
+    {_id: req.params.id, "classes._id": classId},
+    {$push: {classes.student:data}},
+    {upsert:true},
+    function(err, succ){
+      if (err) {res.send('Qualcosa è andato storto, riprova')}
+      else {
+        console.log("ok, aggiunto "+addClass + " all'id " + req.params.id);
+        res.redirect('back');
+    }}
+  );

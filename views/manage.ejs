@@ -49,22 +49,18 @@
                   </div>
             </nav>
       </div>
-      <aside id="main">
-            <section class="welcome" id="welcomeText">
-                  <% if (!user) { %>
-                        Non hai fatto il login o non possiedi un account? <br>Fai il <a href="/users/login">Login</a> o <a href="/users/register">registrati</a>.
-                  <%} else { %>
-                        Ciao, <%= user.username %>. Gestisci le tue classi.
-                  <%} %>
-            </section>
-            
+
+      <section class="welcome" id="welcomeText">
+            Ciao, <%= user.username %>. Gestisci le tue classi.
+      </section>
+      <aside id="mainManage">
             <form  <% if (!user) { %>
                         action="/manage/add" 
                   <%} else { %>
                         action="/manage/add/<%= user.id %>" 
                   <%} %> method="POST">
                   <label for="">Aggiungi una classe</label>
-                  <select name="cNum">
+                  <select name="cNum" class="selectClass">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -72,38 +68,41 @@
                         <option value="5">5</option>
                   </select>
       
-                  <select name="cSez">
+                  <select name="cSez" class="selectClass">
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
                   </select>
-                  <input type="submit" value="Add">
+                  <input type="submit" value="+" class="btnClass">
             </form>
             <ul>
                   <div id="classList">
-                              <% for(var i = 0; i<(user.classes.length); i++) { %>
-                                    <li id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %> 
-                                          <!-- <form  <% if (!user) { %>
-                                                action="/manage/class" 
-                                          <%} else { %>
-                                                action="/manage/class/<%= user.classes[i].id %>" 
-                                          <%} %> method="POST">
-                                          <input type="submit" value="Go">
-                                    </form> -->
-                                    </li>
-                              <% } %>
+                        <% for(var i = 0; i<(user.classes.length); i++) { %>
+                              <li class="classList" id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %></li>
+                        <% } %>
                   </div>
                   
             </ul>
       </aside>
-           <div id="dataDiv">
-                 
-           </div>
-
-           <div id="ajaxDiv">
-                Ajax,  
-           </div>
+      <div id="ajaxContainer">
+            <div id="userInvisibleId" hidden><%= user._id %></div>
+            <div id="invisibleId" name="classid" ></div>
+            <div id="className"></div>
+            <div id="addStudent">
+                        <!-- /manage/addStudent/<%= user.id %> -->
+                  <form action="/manage/addStudent/<%= user.id %>" method="POST" id="formAddStud">
+                        <label for="">Aggiungi uno studente</label>
+                        <input id="name_input" type="text" name="name" placeholder="Nome" tabindex="1">
+                        <input id="lname_input" type="text" name="lname" placeholder="Cognome" tabindex="2">
+                        <div id="switch">
+                              <label><input type="radio" value="M" name="gender" tabindex="3" checked>Maschio</label>
+                              <label><input type="radio" value="F" name="gender">Femmina</label>
+                        </div>
+                        <input id="addBtn_input" type="submit" value="+">
+                  </form>
+            </div>
+            <div id="students"></div>
+      </div>
 </body>   
 <script src="/js/manageCode.js"></script>
 </html>     
-     

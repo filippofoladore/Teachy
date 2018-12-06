@@ -53,56 +53,59 @@
       <section class="welcome" id="welcomeText">
             Ciao, <%= user.username %>. Gestisci le tue classi.
       </section>
-      <aside id="mainManage">
-            <form  <% if (!user) { %>
-                        action="/manage/add" 
-                  <%} else { %>
-                        action="/manage/add/<%= user.id %>" 
-                  <%} %> method="POST">
-                  <label for="">Aggiungi una classe</label>
-                  <select name="cNum" class="selectClass">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                  </select>
-      
-                  <select name="cSez" class="selectClass">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                  </select>
-                  <input type="submit" value="+" class="btnClass">
-            </form>
-            <ul>
-                  <div id="classList">
-                        <% for(var i = 0; i<(user.classes.length); i++) { %>
-                              <li class="classList" id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %></li>
-                        <% } %>
+      <div id="wrapper">
+            <div id="mainManage">
+                  <form  <% if (!user) { %>
+                              action="/manage/add" 
+                        <%} else { %>
+                              action="/manage/add/<%= user.id %>" 
+                        <%} %> method="POST" id="classAddForm">
+                        <label for="">Aggiungi una classe</label>
+                        <select name="cNum" class="selectClass">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                        </select>
+            
+                        <select name="cSez" class="selectClass">
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                        </select>
+                        <input type="submit" value="+" class="btnClass">
+                  </form>
+                  <ul>
+                        <div id="classList">
+                              <% for(var i = 0; i<(user.classes.length); i++) { %>
+                                    <li class="classList" id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %></li>
+                              <% } %>
+                        </div>
+                  </ul>
+                
+            </div>
+            <div id="ajaxContainer">
+                  <div id="userInvisibleId" hidden><%= user._id %></div>
+                  <div id="invisibleId" name="classid" hidden></div>
+                  <div id="className"></div>
+                  <div id="addStudent">
+                        <form action="/manage/addStudent/<%= user.id %>" method="POST" id="formAddStud">
+                              <label for="labeltext">Aggiungi uno studente</label>
+                              <input id="name_input" type="text" name="name" placeholder="Nome" tabindex="1">
+                              <input id="lname_input" type="text" name="lname" placeholder="Cognome" tabindex="2">
+                              <div id="switch">
+                                    <label><input type="radio" value="M" name="gender" tabindex="3" checked>Maschio</label>
+                                    <label><input type="radio" value="F" name="gender">Femmina</label>
+                              </div>
+                              <input id="addBtn_input" type="submit" value="Aggiungi">
+                        </form>
                   </div>
                   
-            </ul>
-      </aside>
-      <div id="ajaxContainer">
-            <div id="userInvisibleId" hidden><%= user._id %></div>
-            <div id="invisibleId" name="classid" ></div>
-            <div id="className"></div>
-            <div id="addStudent">
-                        <!-- /manage/addStudent/<%= user.id %> -->
-                  <form action="/manage/addStudent/<%= user.id %>" method="POST" id="formAddStud">
-                        <label for="">Aggiungi uno studente</label>
-                        <input id="name_input" type="text" name="name" placeholder="Nome" tabindex="1">
-                        <input id="lname_input" type="text" name="lname" placeholder="Cognome" tabindex="2">
-                        <div id="switch">
-                              <label><input type="radio" value="M" name="gender" tabindex="3" checked>Maschio</label>
-                              <label><input type="radio" value="F" name="gender">Femmina</label>
-                        </div>
-                        <input id="addBtn_input" type="submit" value="+">
-                  </form>
+                  <div id="students"></div>
             </div>
-            <div id="students"></div>
       </div>
+      
 </body>   
 <script src="/js/manageCode.js"></script>
 </html>     

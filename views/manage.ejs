@@ -8,10 +8,14 @@
       <title>Teachy</title>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
             crossorigin="anonymous">
-      <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> -->
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+      <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
       <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -51,7 +55,7 @@
       </div>
 
       <section class="welcome" id="welcomeText">
-            Ciao, <%= user.username %>. Gestisci le tue classi.
+            Ciao, <%= user.username %>. <br>Gestisci le tue classi.
       </section>
       <div id="wrapper">
             <div id="mainManage">
@@ -79,26 +83,29 @@
                   <ul>
                         <div id="classList">
                               <% for(var i = 0; i<(user.classes.length); i++) { %>
-                                    <li class="classList" id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %></li>
+                                    <li class="classList tap-target" id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %></li>
                               <% } %>
                         </div>
                   </ul>
-                
+                  
+                  
+
+          
             </div>
             <div id="ajaxContainer">
                   <div id="userInvisibleId" hidden><%= user._id %></div>
                   <div id="invisibleId" name="classid" hidden></div>
                   <div id="className"></div>
                   <div id="addStudent">
-                        <form action="/manage/addStudent/<%= user.id %>" method="POST" id="formAddStud">
-                              <label for="labeltext">Aggiungi uno studente</label>
+                        <form action="/manage/addStudent/<%= user.id %>" method="POST" id="formAddStud" autocomplete="off">
+                              <label id="labeltext">Aggiungi uno studente</label>
                               <input id="name_input" type="text" name="name" placeholder="Nome" tabindex="1">
                               <input id="lname_input" type="text" name="lname" placeholder="Cognome" tabindex="2">
                               <div id="switch">
                                     <label><input type="radio" value="M" name="gender" tabindex="3" checked>Maschio</label>
                                     <label><input type="radio" value="F" name="gender">Femmina</label>
                               </div>
-                              <input id="addBtn_input" type="submit" value="Aggiungi">
+                              <input id="addBtn_input" type="submit" value="+">
                         </form>
                   </div>
                   

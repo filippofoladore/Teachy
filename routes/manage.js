@@ -70,10 +70,40 @@ router.post('/classes/:id', function(req,res){
       else {res.json(result);}
     }
   )
- 
 });
 
+router.post('/deleteClass/:id', function(req,res){
+  console.log("deleting starting...")
+  console.log("user id "+ req.user.id);
+  console.log("class id "+ req.params.id); 
+  Teacher.findByIdAndUpdate(
+    {_id: req.user.id},
+    {$pull:{classes:{_id: req.params.id}}},
+    {new: true},
+    function (err, result) {
+      if (err) {
+        console.log("errore deleting");
+        console.log(err)
+      } else {
+        console.log("ok, deleted");
+        res.json(result);
+      }
+    }
+    )
+})
 
+router.post('/deleteStudent/:id', function(req,res){
+  Teacher.findOneAndUpdate(
+    {"_id": req.user.id, "classes._id": req.body.classid},
+    {"$pull": {'classes.$.student': {"_id": req.params.id}}},
+    {new:true},
+    (err,result) => {
+      if (err) {console.log("omegaerrore"); console.log(err)}
+      else {
+        res.json(result);}
+    }
+  )
+})
 
 router.get('/', function(req,res){
   res.render('manage');

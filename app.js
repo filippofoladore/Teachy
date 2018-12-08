@@ -7,7 +7,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
-const favicon = require('serve-favicon')
+const favicon = require('serve-favicon');
+const interact = require('interactjs');
 
 mongoose.connect(config.database);
 let db = mongoose.connection;

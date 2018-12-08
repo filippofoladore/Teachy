@@ -1,0 +1,5 @@
+db.teachers.update(
+{_id: ObjectId("5c0965c06a654524c8ff04fa"),
+"classes._id": ObjectId("5c09bae01d53860b58f7a121")},
+{$pull: {"classes.$.student._id":ObjectId("5c09c46e6eb4f323b4e546b2")}}
+)

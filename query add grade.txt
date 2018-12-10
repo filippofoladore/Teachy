@@ -1,0 +1,37 @@
+db.teachers.update(
+{"_id":ObjectId("5c0c59985ae5981c58937e12"),
+"classes._id":ObjectId("5c0c59a35ae5981c58937e13"),
+"classes.student._id":ObjectId("5c0c59aa5ae5981c58937e14")},
+{$addToSet:{"classes.student.$.grades":1}}
+)
+
+db.teachers.update(
+{"_id":ObjectId("5c0c59985ae5981c58937e12"),
+"classes":{ $elemMatch : { _id : ObjectId("5c0c59a35ae5981c58937e13") }},
+"classes.student": { $elemMatch : { _id : ObjectId("5c0c59aa5ae5981c58937e14")} }},
+{$addToSet:{"classes.$.student.0.grades":6}}
+)
+
+db.teachers.update({"_id":ObjectId("5c0c59985ae5981c58937e12"),"classes":{ $elemMatch : { _id : ObjectId("5c0c59a35ae5981c58937e13") }},"classes.student": { $elemMatch : { _id : ObjectId("5c0c59aa5ae5981c58937e14")} }},{$addToSet:{"classes.$.student.0.grades":3}})
+
+
+db.teachers.update({
+"_id": ObjectId("5c0c55642440311ff0353846"), 
+"classes._id": ObjectId("5c0c556e2440311ff0353847"), 
+"classes.student._id": ObjectId("5c0c55812440311ff0353848")},
+{$addToSet: {"classes.$.student.grades":6}})
+
+db.teachers.update(
+{"_id": ObjectId("5c0c55642440311ff0353846"),
+"classes":{ $elemMatch : { _id : ObjectId("5c0c556e2440311ff0353847") }}},
+"classes.student": { $elemMatch : { _id : ObjectId("5c0c55812440311ff0353848")} },
+{$addToSet: {"classes.$.student.grades":6}})
+
+db.teachers.update(
+{
+"_id": ObjectId("5c0c55642440311ff0353846"),
+"classes":{ $elemMatch : { _id : ObjectId("5c0c556e2440311ff0353847") }},
+"classes.student": { $elemMatch : { _id : ObjectId("5c0c55812440311ff0353848")}}
+},
+{$addToSet: {"classes.$.student.grades":6}}
+)

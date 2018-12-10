@@ -96,9 +96,12 @@ app.get('/', function(req, res){
 // File di route
 let users = require('./routes/users');
 let manage = require('./routes/manage')
-//per ogni richiesta con /users reindirizza al file di route users.js 
+let registro = require('./routes/registro')
+
+//per ogni richiesta con /users /manage /registro ... reindirizza al file di route users.js 
 app.use('/users', users);
 app.use('/manage', manage);
+app.use('/registro', registro)
 
 // Fa partire il server sulla porta 3000
 app.listen(3000, function(){

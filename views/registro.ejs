@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Teachy</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+      <!-- Navigation bar -->
+      <div class="container">
+            <nav>
+                  <input type="checkbox" id="nav" class="hidden">
+                  <label for="nav" class="nav-btn">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                  </label>
+                  <div class="logo">
+                        <a href="/">TEACHY</a>
+                  </div>
+                  <div class="nav-wrapper">
+                        <ul>
+                              <ul>
+                                    <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
+
+                                    <% if (!user) { %>
+                                    <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                                    <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Registro</a></li>
+                                    <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Random Picker</a></li>
+                                    <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>About</a></li>
+                                    <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
+                                    <% } else { %>
+                                    <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                                    <li><a href="/registro"><i class="fas fa-cogs"></i><span> </span>Registro</a></li>
+                                    <li><a href="/random"><i class="fas fa-cogs"></i><span> </span>Random Picker</a></li>
+                                    <li><a href="/about"><i class="fas fa-cogs"></i><span> </span>About</a></li>
+                                    <li class="itemsLike"> <i class="fas fa-user-circle"></i>
+                                          <%= user.name %>
+                                    </li>
+                                    <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
+                                    <%} %>
+                              </ul>
+                        </ul>
+                  </div>
+            </nav>
+      </div>
+
+      <div id="mainManage">
+            <div id="classList">
+                  <% for(var i = 0; i<(user.classes.length); i++) { %>
+                  <li class="classList tap-target" id="<%= user.classes[i].id %>">
+                        <%= user.classes[i].cName %>
+                  </li>
+                  <% } %>
+            </div>
+      </div>
+
+      <div id="ajaxContainer">
+            <div id="userInvisibleId" hidden>
+                  <%= user._id %>
+            </div>
+            <div id="invisibleId" name="classid" hidden></div>
+            <div id="className"></div>
+            <div id="students"></div>
+      </div>
+</body>
+<script src="/js/registroCode.js"></script>
+
+</html>

@@ -1,0 +1,1 @@
+> db.teachers.update({"_id": ObjectId("5c0965c06a654524c8ff04fa"), "classes._id": ObjectId("5c0ad4362e9c5820e0d70e36"), "classes.student._id": ObjectId("5c0b0b22faedcf24f0a935ec")},{$set: {"student.$.grades":6}})

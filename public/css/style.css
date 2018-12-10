@@ -122,7 +122,7 @@ It will select all elements that is preceded by the former selector. */
 
 #nav:checked~.nav-wrapper ul li a {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0px);
 }
 
 .hidden {
@@ -444,14 +444,14 @@ label.error {
 }
 
 #mainManage {
-    background:red;
+    /* background:red; */
     float: left;
     width: 25%;
     height: 100vh;
 }
 
 #ajaxContainer {
-    background:blue;
+    /* background:blue; */
     overflow: hidden;
     padding-bottom: 5px;
 }
@@ -503,6 +503,15 @@ label.error {
     margin-top: 0;
     margin-left: 50px;
 }
+
+table, tr, td {
+    border: 1px solid #232323;
+}
+
+.registro {
+    margin-left: 30px;
+}
+
 
 
 @media screen and (max-width: 800px) {

@@ -1,0 +1,24 @@
+//find tutto
+db.teachers.find(
+{_id: ObjectId("5c0c55642440311ff0353846"), "classes._id": ObjectId("5c0c556e2440311ff0353847"), "classes.student._id":ObjectId("5c0c55812440311ff0353848")}
+).pretty()
+
+//find e restiuisce la classe
+db.teachers.find(
+{_id: ObjectId("5c0c55642440311ff0353846"), "classes._id": ObjectId("5c0c556e2440311ff0353847"), "classes.student._id":ObjectId("5c0c55812440311ff0353848")},
+{"classes.$":1}
+).pretty()
+
+db.teachers.find(
+{_id: ObjectId("5c0c55642440311ff0353846"), "classes._id": ObjectId("5c0c556e2440311ff0353847"), "classes.student._id":ObjectId("5c0c55812440311ff0353848")},
+{"classes.student.$$":1}
+).pretty()
+
+db.teachers.find({
+"classes.student._id": ObjectId("5c0c55812440311ff0353848")
+})
+
+db.teachers.find(
+{"classes.student._id": ObjectId("5c0e913c43c06d16b0ca2de8")},
+{"classes.student.$":1}
+)

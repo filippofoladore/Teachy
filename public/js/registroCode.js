@@ -6,8 +6,9 @@ $(document).ready(function () {
         $('ul li a').css('margin-right', '0px')
     }
     var obj = []
-    var arr = new Array ()
+
     $('#classList2 li').on('click', function () {
+        obj = []
         var id = "";
         id = $(this).attr('id');
         $.ajax({
@@ -21,7 +22,6 @@ $(document).ready(function () {
                 $("#students").empty();
                 $('#invisibleId').empty();
                 $('#studentsTable').empty()
-                //$('#infobox').show();
                 
                 var classId = data['classes'][0]['_id'];
                 var className = data['classes'][0]['cName'];
@@ -38,15 +38,7 @@ $(document).ready(function () {
 
 
                 $('#studentsTable').append("<table id='table'> <thead> <tr> <td>Nome</td> <td>Cognome</td> <td>Voti</td> </thead> <tbody>")
-                // for (var i = 0; i < data['classes'][0]['student'].length; i++) {
-                //     $('#table').append("<tr>" +
-                //         "<td>" + data['classes'][0]['student'][i]['name'] + "</td>" +
-                //         "<td>" + data['classes'][0]['student'][i]['lname'] + "</td>" +
-                //         "<td>" + "<a href='#' class='buttonStud' id='" +
-                //         data['classes'][0]['student'][i]['_id'] + "'><i class='fas fa-arrow-circle-right'></i></a>" + "</td>" +
-                //         "</tr>"
-                //     )
-                // }
+
                 
                 for (var i = 0; i < data['classes'][0]['student'].length; i++) {
                     obj.push({
@@ -67,7 +59,8 @@ $(document).ready(function () {
                     
                 }
 
-                console.log(JSON.stringify(obj))
+                //console.log(JSON.stringify(obj))
+
                 localStorage.setItem('students', JSON.stringify(obj))
                 $('#studentsTable').append('</tbody> </table>')
             }
@@ -75,39 +68,26 @@ $(document).ready(function () {
     })
 
     $('#studentsTable').on('click', 'a', function(){
-        var studID = "";
-        var classID = $('#invisibleId').text()
-        var dataSent = {
-            classid: $('#invisibleId').text()
+        $('#infobox').empty()
+        let newObj ={}
+        var studID = $(this).attr('id');
+        var stud = JSON.parse(localStorage.getItem('students'))
+
+       for (var i = 0; i < stud.length; i++) {
+        if (studID == stud[i]._id) {
+            newObj._id = stud[i]._id
+            newObj.name = stud[i].name
+            newObj.lname = stud[i].lname
+            newObj.gender = stud[i].gender
+            newObj.voti = stud[i].voti
         }
-        studID = $(this).attr('id');
-        // $('.buttonStud').prevUntil('a').css('background-color', 'red')
-        var currRow = $(this).closest("tr")
-        var c1val = currRow.find('td:eq(0)').text()
-        var c2val = currRow.find('td:eq(1)').text()
-        var stud = JSON.stringify(localStorage.getItem('students'))
-        console.log(stud.name)
+       }
+       console.log(newObj)
+       $('#infobox').show();
        
-        // console.log("stud: "+studID)
-        // console.log(dataSent)
-        // console.log(JSON.stringify(dataSent))
-        // $.ajax ({
-        //     url: '/registro/getStudents/' + studID,
-        //     contentType: 'application/json',
-        //     type: 'POST',
-        //     data: JSON.stringify(dataSent),
-        //     success: function(data){
-        //         console.log('success')
-        //         console.log(data)
-        //        var d = JSON.stringify(data);
-        //        $('#infobox').show()
-        //        //console.log(d)
-
-        //        //var filter = d.filter(element => element._id == studID)
-        //        //console.log(filter)
-        //     }
-        // })
-
+       $('#infobox').append('<p> Nome: ' + newObj.name + '<br> Cognome: '+
+        newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ')
+           )
     })
    
 
@@ -124,3 +104,7 @@ $(window).resize(function () {
     }
 })
 
+window.onbeforeunload = function() {
+    localStorage.clear();
+    return;
+  };

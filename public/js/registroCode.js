@@ -83,11 +83,21 @@ $(document).ready(function () {
         }
        }
        console.log(newObj)
-       $('#infobox').show();
-       
-       $('#infobox').append('<p> Nome: ' + newObj.name + '<br> Cognome: '+
-        newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ')
-           )
+       $.confirm({
+           title: 'Informazioni studente',
+           boxWidth: '400px',
+           animation: 'bottom',
+            closeAnimation: 'top',
+            theme: 'material',
+            type: 'blue',
+            backgroundDismiss: true,
+           content: '<p> Nome: ' + newObj.name + '<br> Cognome: '+
+               newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ') + '<form action="" '+
+                '<label> Inserisci un nuovo voto: </label> <br> <input type="number" placeholder="Nuovo voto" required maxlength="3"/> </form>'
+       })
+    //    $('#infobox').append('<p> Nome: ' + newObj.name + '<br> Cognome: '+
+    //     newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ')
+    //        )
     })
    
 

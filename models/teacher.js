@@ -15,7 +15,7 @@ const TeachSchema = mongoose.Schema({
           name: { type: String, required: true },
           lname: { type: String, required: true },
           gender: { type: String, enum: ['M', 'F'] },
-          grades: { type: Array }
+          grades:{ type: [Number]} 
         }
       ]
     }]

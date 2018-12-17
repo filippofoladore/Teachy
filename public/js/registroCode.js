@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     if (screen.width < 420) {
         $('ul li a').css('margin-right', '40px')
         //$('#nav:checked~.nav-wrapper ul li a').css('margin-right', '40px')
@@ -22,7 +23,7 @@ $(document).ready(function () {
                 $("#students").empty();
                 $('#invisibleId').empty();
                 $('#studentsTable').empty()
-                
+
                 var classId = data['classes'][0]['_id'];
                 var className = data['classes'][0]['cName'];
                 var studentiOrdinato = data['classes'][0]['student'];
@@ -39,7 +40,7 @@ $(document).ready(function () {
 
                 $('#studentsTable').append("<table id='table'> <thead> <tr> <td>Nome</td> <td>Cognome</td> <td>Voti</td> </thead> <tbody>")
 
-                
+
                 for (var i = 0; i < data['classes'][0]['student'].length; i++) {
                     obj.push({
                         _id: data['classes'][0]['student'][i]['_id'],
@@ -48,7 +49,7 @@ $(document).ready(function () {
                         gender: data['classes'][0]['student'][i]['gender'],
                         voti: data['classes'][0]['student'][i]['grades']
                     })
-                    
+
                     $('#table').append("<tr>" +
                         "<td>" + data['classes'][0]['student'][i]['name'] + "</td>" +
                         "<td>" + data['classes'][0]['student'][i]['lname'] + "</td>" +
@@ -56,7 +57,7 @@ $(document).ready(function () {
                         data['classes'][0]['student'][i]['_id'] + "'><i class='fas fa-arrow-circle-right'></i></a>" + "</td>" +
                         "</tr>"
                     )
-                    
+
                 }
 
                 //console.log(JSON.stringify(obj))
@@ -67,40 +68,69 @@ $(document).ready(function () {
         });
     })
 
-    $('#studentsTable').on('click', 'a', function(){
+    $('#studentsTable').on('click', 'a', function () {
         $('#infobox').empty()
-        let newObj ={}
+        let newObj = {}
         var studID = $(this).attr('id');
         var stud = JSON.parse(localStorage.getItem('students'))
 
-       for (var i = 0; i < stud.length; i++) {
-        if (studID == stud[i]._id) {
-            newObj._id = stud[i]._id
-            newObj.name = stud[i].name
-            newObj.lname = stud[i].lname
-            newObj.gender = stud[i].gender
-            newObj.voti = stud[i].voti
+        for (var i = 0; i < stud.length; i++) {
+            if (studID == stud[i]._id) {
+                newObj._id = stud[i]._id
+                newObj.name = stud[i].name
+                newObj.lname = stud[i].lname
+                newObj.gender = stud[i].gender
+                newObj.voti = stud[i].voti
+            }
         }
-       }
-       console.log(newObj)
-       $.confirm({
-           title: 'Informazioni studente',
-           boxWidth: '400px',
-           animation: 'bottom',
+        console.log(newObj)
+        $.confirm({
+            title: 'Informazioni studente',
+            boxWidth: '400px',
+            animation: 'bottom',
             closeAnimation: 'top',
             theme: 'material',
             type: 'blue',
             backgroundDismiss: true,
-           content: '<p> Nome: ' + newObj.name + '<br> Cognome: '+
-               newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ') + '<form action="" '+
-                '<label> Inserisci un nuovo voto: </label> <br> <input type="number" placeholder="Nuovo voto" required maxlength="3"/> </form>'
-       })
-    //    $('#infobox').append('<p> Nome: ' + newObj.name + '<br> Cognome: '+
-    //     newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ')
-    //        )
-    })
-   
+            content: '<p> Nome: ' + newObj.name + '<br> Cognome: ' +
+                newObj.lname + '<br> Sesso: ' + newObj.gender + '<br> Voti: ' + newObj.voti.join(', ') + '<form action="" ' +
+                '<label> Inserisci un nuovo voto: </label> <input id = "voto" type="number" min="1" max="10"> </form> ',
+                buttons: {
+                    Aggiungi: {
+                        text: 'Aggiungi',
+                        btnClass: 'btn-green',
+                        action : function (){
+                            var voto = this.$content.find('#voto').val();
+                            var classe = $('#invisibleId').text()
+                            if (voto == "") {
+                                $.alert('Inserisci un numero compreso tra 1 e 10!')
+                                return false
+                            } else {
+                                var dataSent = {voto: voto, classe : classe}
+                                $.ajax({
+                                    type: 'POST',
+                                    contentType: 'application/json',
+                                    url: '/registro/addVote/'+ newObj._id,
+                                    data: JSON.stringify(dataSent),
+                                    success: function(data) {
+                                        console.log('success')
+                                        console.log(data)
+                                    }
+                                })
+                            }
 
+                        }
+                    },
+                    Cancella:{
+                        text: 'Cancella',
+                        btnClass: 'btn-bred',
+                    }
+                }
+        })
+
+    })
+
+    { /* <input type="number" placeholder="Nuovo voto" required min="1" max="100"/>  */ }
 
 
 })
@@ -114,7 +144,7 @@ $(window).resize(function () {
     }
 })
 
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
     localStorage.clear();
     return;
-  };
+};

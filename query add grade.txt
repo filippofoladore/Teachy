@@ -39,5 +39,7 @@ db.teachers.update(
 "classes":{ $elemMatch : { _id : ObjectId("5c0c556e2440311ff0353847") }},
 "classes.student": { $elemMatch : { _id : ObjectId("5c0c55812440311ff0353848")}}
 },
-{$addToSet: {"classes.$.student.grades":6}}
+{$addToSet: {"classes.$.student.0.grades":6}}
 )
+
+

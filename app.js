@@ -3,12 +3,11 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
-const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
 const favicon = require('serve-favicon');
-const interact = require('interactjs');
+
 
 mongoose.connect(config.database);
 let db = mongoose.connection;
@@ -50,13 +49,7 @@ app.use(session({
     saveUninitialized: true
   }));
 
-  // Express Messages Middleware
-// app.use(require('connect-flash')());
-// app.use(function (req, res, next) {
-//   res.locals.messages = require('express-messages')(req, res);
-//   next();
-// });
-app.use(flash());
+
 
 // Express Validator Middleware
 app.use(expressValidator({
@@ -97,11 +90,13 @@ app.get('/', function(req, res){
 let users = require('./routes/users');
 let manage = require('./routes/manage')
 let registro = require('./routes/registro')
+let random = require('./routes/random')
 
 //per ogni richiesta con /users /manage /registro ... reindirizza al file di route users.js 
 app.use('/users', users);
 app.use('/manage', manage);
 app.use('/registro', registro)
+app.use('/random', random)
 
 // Fa partire il server sulla porta 3000
 app.listen(3000, function(){

@@ -1,11 +1,15 @@
 $(document).ready(function () {
 
-    if (screen.width < 420) {
+    if (screen.width < 420) { //mobile navbar
         $('ul li a').css('margin-right', '40px')
-        //$('#nav:checked~.nav-wrapper ul li a').css('margin-right', '40px')
-    } else if (screen.width > 420) {
+    } else if (screen.width > 420) { //desktop navbar
         $('ul li a').css('margin-right', '0px')
+    } 
+    if (screen.width === 768 && screen.height === 1024 ) { //ipad navbar
+        console.log("hey")
+        $('ul li a').css('margin-right', '40px')
     }
+
     var obj = []
 
     $('#classList2 li').on('click', function () {

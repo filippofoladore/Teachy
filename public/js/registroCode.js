@@ -134,7 +134,7 @@ $(document).ready(function () {
 
     })
 
-    { /* <input type="number" placeholder="Nuovo voto" required min="1" max="100"/>  */ }
+ 
 
 
 })

@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    if (screen.width < 420) { //mobile navbar
+        $('#rand').css('margin-top', '0px')
+    } else if (screen.width > 420) { //desktop navbar
+        $('#rand').css('margin-top', '-685px')
+    } 
+    if (screen.width === 768 && screen.height === 1024 ) { //ipad navbar
+        $('#rand').css('margin-top', '0px')
+    }
 
     $('#classList2 li').on('click', function () {
         let stud = []
@@ -20,8 +28,16 @@ $(document).ready(function () {
                     })
                 }
                 console.log(stud.length)
-                let randomStud = stud[Math.floor(Math.random() * stud.length)]
-                console.log(randomStud.name + " " + randomStud.lname)
+                $('#rand').empty();
+                //repeat three times to prevent errors (always first non si sa)
+                // var randomStud = stud[Math.floor(Math.random() * stud.length)]
+                // console.log("Ite: " + k + randomStud.name + " " + randomStud.lname)
+                for (let k = 0; k < 3; k++) {
+                    var randomStud = stud[Math.floor(Math.random() * stud.length)]
+                    console.log("Ite: "+ k + randomStud.name + " " + randomStud.lname)
+                }
+                console.log(randomStud)
+                $('#rand').append('<p> È stato estratto: <br>'+randomStud.name+" "+ randomStud.lname)
             }
         })
 
@@ -33,4 +49,15 @@ $(document).ready(function () {
 
 
 
+})
+
+$(window).resize(function () {
+     if (screen.width < 420) { //mobile navbar
+        $('#rand').css('margin-top', '0px')
+    } else if (screen.width > 420) { //desktop navbar
+        $('#rand').css('margin-top', '-685px')
+    } 
+    if (screen.width === 768 && screen.height === 1024 ) { //ipad navbar
+        $('#rand').css('margin-top', '0px')
+    }
 })

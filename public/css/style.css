@@ -561,6 +561,13 @@ thead {
     transform: translate(110px, -300px)
 }
 
+#rand {
+    margin-left: 30px;
+}
+
+#estrazione {
+    margin-top: 20px;
+}
 
 @media screen and (max-width: 800px) {
     body {
@@ -809,6 +816,12 @@ thead {
         font-size: 20px;
     }
 
+    #rand {
+        margin-left: 30px;
+        margin-top: 70px;
+        font-size: 22px;
+        line-height: 2em;
+    }
 }
 
 /* iPhone 6/7/8 */

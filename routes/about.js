@@ -8,8 +8,13 @@ router.get('/', function (req, res){
 })
 
 router.post('/deleteAccount/:id', function(req, res){
-    res.send("HELLO")
-    console.log(req.user.id)
+    Teacher.findOneAndDelete(
+        {_id: req.params.id},
+        (err, doc) => {
+            if (err) {console.log(err)}
+            else {res.json(doc)}
+        }
+    )
 })
 
 module.exports = router;

@@ -65,13 +65,14 @@ for (let i = 0; i < accordions.length; i++) {
             backgroundDismiss: true, 
             buttons: {
                 Procedi: function () {
-                    
                     $.ajax({
                         url: '/about/deleteAccount/' + localStorage.getItem('user'),
                         contentType: 'application/json',
                         type: 'POST',
                         success: function (data) {
-                           
+                            console.log(data)
+                            let url = 'http://localhost:3000'
+                            $(location).attr('href', url)
                         }
                     })
                 },

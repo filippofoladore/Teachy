@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
 const favicon = require('serve-favicon');
+const flash = require('express-flash-messages')
 
 
 mongoose.connect(config.database);
@@ -31,7 +32,7 @@ let Teacher = require('./models/teacher');
 //carica view engine per la visualizzazione delle pagine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(flash())
 
 //carica body parser per leggere i dati
 app.use(bodyParser.urlencoded({ extended: false }));

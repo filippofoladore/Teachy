@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Teachy</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+      <!-- Navigation bar -->
+      <div class="container">
+            <nav>
+                  <input type="checkbox" id="nav" class="hidden">
+                  <label for="nav" class="nav-btn">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                  </label>
+                  <div class="logo">
+                        <a href="/">TEACHY</a>
+                  </div>
+                  <div class="nav-wrapper">
+                        <ul>
+                              <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
+
+                              <% if (!user) { %>
+                              <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <li><a href="/users/login"><i class="fas fa-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/users/login"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href="/users/login"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
+                              <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
+                              <% } else { %>
+                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>  
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li> 
+                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li> 
+                              <li class="itemsLike"> <i class="fas fa-user-circle"></i><%= user.name %></li>
+                              <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
+                              <%} %>
+                         </ul>
+                  </div>
+            </nav>
+      </div>
+      <div class="accordion">
+          <h1>Guida & FAQ</h1>
+          <button class="accordion">Gestione</button>
+          <div class="accordionContent">
+              <p>
+                  <ul>
+                    <li>Come elimino una classe?</li>  
+                    Per eliminare una classe dal proprio registro è sufficiente fare doppio click o doppio tap sopra la classe da eliminare e confermare la propria scelta nel pop-up! 
+                    <li>Come elimino uno studente?</li>
+                    Per eliminare uno studente è sufficiente fare doppio click o doppio tap sopra lo studente da eliminare e confermare la scelta nel pop-up! 
+                    <li>Come estraggo uno studente casuale dal Random Picker?</li> 
+                    È sufficiente premere sulla classe in cui è presente lo studente e l'algoritmo procederà ad estrarre in maniera casuale uno studente, esso verrà poi visualizzato a schermo. 
+                    </ul>
+              </p>
+          </div>
+
+          <button class="accordion">Info</button>
+          <div class="accordionContent">
+              <p>
+                Teachy è ..... progetto universitario
+                interfaccia semplice e minimale
+              </p>
+          </div>
+
+          <button class="accordion">Contatti</button>
+          <div class="accordionContent">
+              <p>
+                  li orizzontale
+                  facebook instagram twitter github
+                  text con campo ......
+             </p>
+          </div>
+
+          <button class="accordion">Cancella account</button>
+          <div class="accordionContent">
+              <p>
+                  Non usi più Teachy? <br> 
+                  Prima di andartene fammi sapere la tua esperienza entrando nella scheda contatti. <br>
+                    A presto <br>
+                  <button class="eliminaAccount" id="delAccount">Cancella Account * </button> <br>
+                  *La cancellazione dell'account è un'operazione non reversibile in cui verranno eliminati tutti i dati personali. Il tuo account una volta eliminato non sarà recuperabile.
+              </p>
+          </div>
+
+      </div>
+     
+</body>
+    <script src="/js/aboutCode.js"></script>
+</html>

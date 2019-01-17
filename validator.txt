@@ -1,0 +1,10 @@
+about: OK!
+index
+login
+manage
+random
+register
+registro
+
+
+

@@ -35,36 +35,23 @@
                   <div class="nav-wrapper">
                         <ul>
                               <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
-
-                              <% if (!user) { %>
-                              <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+<li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
                               <li><a href="/users/login"><i class="fas fa-book"></i><span> </span>Registro</a></li>
                               <li><a href="/users/login"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
                               <li><a href="/users/login"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
                               <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
-                              <% } else { %>
-                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
-                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>  
-                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li> 
-                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li> 
-                              <li class="itemsLike"> <i class="fas fa-user-circle"></i><%= user.name %></li>
-                              <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
-                              <%} %>
-                        </ul>
+                              
+                                                      </ul>
                   </div>
             </nav>
       </div>
 
       <section class="welcome" id="welcomeText">
-            Ciao, <%= user.username %>. <br>Gestisci le tue classi.
+            <h1> Ciao, . <br>Gestisci le tue classi. </h1>
       </section>
       <div id="wrapper">
             <div id="mainManage">
-                  <form  <% if (!user) { %>
-                              action="/manage/add" 
-                        <%} else { %>
-                              action="/manage/add/<%= user.id %>" 
-                        <%} %> method="POST" id="classAddForm">
+                  <form  action="/manage/add" method="POST" id="classAddForm">
                         <label>Aggiungi una classe</label>
                         <select name="cNum" class="selectClass">
                               <option value="1">1</option>
@@ -82,11 +69,7 @@
                         <input type="submit" value="+" class="btnClass">
                   </form>
                   <ul>
-                        <div id="classList">
-                              <% for(var i = 0; i<(user.classes.length); i++) { %>
-                                    <li class="classList tap-target" id="<%= user.classes[i].id %>"> <%= user.classes[i].cName %></li>
-                              <% } %>
-                        </div>
+                        
                   </ul>
                   <div id="faq">
                         Eliminare una classe o uno studente?<br> Guarda le <a href="/about">guida</a>!
@@ -94,11 +77,11 @@
             </div>
 
             <div id="ajaxContainer">
-                  <div id="userInvisibleId" hidden><%= user._id %></div>
-                  <div id="invisibleId" hidden></div>
+                  <div id="userInvisibleId" hidden></div>
+                  <div id="invisibleId"  hidden></div>
                   <div id="className"></div>
                   <div id="addStudent">
-                        <form action="/manage/addStudent/<%= user.id %>" method="POST" id="formAddStud" autocomplete="off">
+                        <form action="/manage/addStudent/" method="POST" id="formAddStud" autocomplete="off">
                               <label id="labeltext">Aggiungi uno studente</label>
                               <input id="name_input" type="text" name="name" placeholder="Nome" tabindex="1">
                               <input id="lname_input" type="text" name="lname" placeholder="Cognome" tabindex="2">

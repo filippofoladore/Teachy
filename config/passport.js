@@ -32,5 +32,5 @@ module.exports = function(passport){
         Teacher.findById(id, function(err, user) {
           done(err, user); //oggetot user nella richiesta req.user
         });
-      });
+      }); 
 }

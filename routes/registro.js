@@ -7,7 +7,7 @@ let Teacher = require('../models/teacher');
 router.get('/', function(req,res){
     res.render('registro');
 })
-
+ 
 //prende in input l'id dello studente con il voto e la classe inserisce nel db il voto
 router.post('/addVote/:id', function (req, res){
     var vote = req.body.voto;

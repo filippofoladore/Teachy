@@ -54,4 +54,4 @@ $(window).resize(function () {
     if (screen.width === 768 && screen.height === 1024 ) { //ipad navbar
         $('#rand').css('margin-top', '0px');
     }
-})
+}) 

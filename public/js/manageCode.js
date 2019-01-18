@@ -169,4 +169,4 @@ window.onbeforeunload = function() {
     //pulisce localstorage prima di chiudere effettivamente la finestra
     localStorage.clear();
     return;
-  };
+  }; 

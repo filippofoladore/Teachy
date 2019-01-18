@@ -19,7 +19,7 @@ const TeachSchema = mongoose.Schema({
         }
       ]
     }]
-});
+}); 
 
 
 const Teacher = module.exports = mongoose.model('Teacher', TeachSchema); //esportazione modulo per poterlo usare dovunque nell'app

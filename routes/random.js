@@ -5,7 +5,7 @@ let Teacher = require('../models/teacher');
 
 //home di random
 router.get('/', function (req, res){
-    res.render('random');
+    res.render('random'); 
 })
 
 //prende in input id della classe e restituisce il documento della classe selezionata

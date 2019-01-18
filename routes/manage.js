@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-let Teacher = require('../models/teacher');
+let Teacher = require('../models/teacher'); 
 
 //aggiunge  una classe, classe/sezione da input form
 router.post('/add/:id', function(req,res){

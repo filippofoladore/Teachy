@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-let Teacher = require('../models/teacher');
+let Teacher = require('../models/teacher'); 
 
 //home di about
 router.get('/', function (req, res){

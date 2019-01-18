@@ -1,17 +1,17 @@
 jQuery(document).ready(function($){
-    
+    //validatore del form di registrazione con le regole
     $.validator.addMethod('secure', function(value, element) {
       return this.optional(element) 
-        || value.length >= 5
-        && /\d/.test(value)
+        || value.length >= 5 //maggiore di 5 caratteri
+        && /\d/.test(value) //un numero
         && /[a-z]/i.test(value);
-    }, 'La password deve essere di almeno 5 caratteri, contenente almeno un numero.')
+    }, 'La password deve essere di almeno 5 caratteri, contenente almeno un numero.');
 
     var validator = $("#signupForm").validate({
       errorClass: 'error',
       rules: {
         name: {required: true, minlength:2},
-        email: {required: true, email: true},    
+        email: {required: true, email: true},
         username: { required: true, minlength: 4},
         password: {required: true, secure: true},
         password2: {equalTo: "#password"}

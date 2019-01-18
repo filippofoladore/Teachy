@@ -5,11 +5,14 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Teachy</title>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-      <link rel="stylesheet" href="/css/style.css">   
+      <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
       <!-- Navigation bar -->
       <div class="container">
@@ -26,7 +29,6 @@
                   <div class="nav-wrapper">
                         <ul>
                               <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
-
                               <% if (!user) { %>
                               <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
                               <li><a href="/users/login"><i class="fas fa-book"></i><span> </span>Registro</a></li>
@@ -35,17 +37,19 @@
                               <li><a class="signin link" href="/users/login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
                               <% } else { %>
                               <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
-                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>  
-                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li> 
-                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li> 
-                              <li class="itemsLike"> <i class="fas fa-user-circle"></i><%= user.name %></li>
+                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
+                              <li class="itemsLike"> <i class="fas fa-user-circle"></i>
+                                    <%= user.name %>
+                              </li>
                               <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
                               <%} %>
-                         </ul>
+                        </ul>
                   </div>
-            </nav> 
+            </nav>
       </div>
-      
+
       <!-- Pop up login/register -->
       <div class="modal">
             <div class="modeSelector">
@@ -53,39 +57,39 @@
                         <li><a href="/users/login" id="switcherLogin">Login</a></li>
                         <li><a href="/users/register" id="switcherSignup">Iscriviti</a></li>
                   </ul>
-      
+
                   <div id="login">
-                        <form class="form" action="/users/login"  method="POST">
+                        <form class="form" action="/users/login" method="POST">
                               <p class="spazioCampi">
                                     <input class="widthChanger paddingChanger borderChanger" name="username" type="text"
                                           placeholder="Username" tabindex="1">
-                             </p>
-      
+                              </p>
+
                               <p class="spazioCampi">
                                     <input class="widthChanger paddingChanger borderChanger" name="password" type="password"
                                           placeholder="Password" tabindex="2">
                                     <!-- <a href="#0" class="hidePassword">Show</a>   -->
-                                    <a href="#0" class="hidePassword"><i class="eye fas fa-eye"></i></a> 
+                                    <a href="#0" class="hidePassword"><i class="eye fas fa-eye"></i></a>
                               </p>
-      
+
                               <p class="spazioCampi">
                                     <input class="widthChanger" type="submit" value="Login" tabindex="3">
                               </p>
                         </form>
-                    </div>
-      </div>
+                  </div>
+            </div>
       </div>
       <script type="text/javascript">
             $('#switcherLogin').css('background', '#74dd74');
-                  $('#switcherSignup').css('background', '#c7e5c7');
-      
-                  $('.hidePassword').on('click', function () {
-                        var $this = $(this), $psw = $this.prev('input');
-                        ('password' == $psw.attr('type')) ? $psw.attr('type', 'text') : $psw.attr('type', 'password');
-                        $('.eye').toggleClass('fa-eye fa-eye-slash');
-                  });
+            $('#switcherSignup').css('background', '#c7e5c7');
+
+            $('.hidePassword').on('click', function () {
+                  var $this = $(this),
+                        $psw = $this.prev('input');
+                  ('password' == $psw.attr('type')) ? $psw.attr('type', 'text'): $psw.attr('type',
+                        'password');
+                  $('.eye').toggleClass('fa-eye fa-eye-slash');
+            });
       </script>
 </body>
-
-
 </html>

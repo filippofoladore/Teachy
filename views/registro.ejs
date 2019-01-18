@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,26 +30,25 @@
                   </div>
                   <div class="nav-wrapper">
                         <ul>
-                              
-                                    <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
 
-                                    <% if (!user) { %>
-                                    <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
-                                    <li><a href="/users/login"><i class="fas fa-book"></i><span> </span>Registro</a></li>
-                                    <li><a href="/users/login"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
-                                    <li><a href="/users/login"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
-                                    <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
-                                    <% } else { %>
-                                    <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
-                                    <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>
-                                    <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
-                                    <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
-                                    <li class="itemsLike"> <i class="fas fa-user-circle"></i>
-                                          <%= user.name %>
-                                    </li>
-                                    <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
-                                    <%} %>
-                              
+                              <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
+                              <% if (!user) { %>
+                              <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <li><a href="/users/login"><i class="fas fa-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/users/login"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href="/users/login"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
+                              <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
+                              <% } else { %>
+                              <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
+                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
+                              <li class="itemsLike"> <i class="fas fa-user-circle"></i>
+                                    <%= user.name %>
+                              </li>
+                              <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
+                              <%} %>
+
                         </ul>
                   </div>
             </nav>
@@ -73,11 +71,7 @@
             <div id="invisibleId" hidden></div>
             <div id="className"></div>
             <div id="studentsTable"></div>
-            <div id="infobox" hidden>
-            </div>
       </div>
       <script src="/js/registroCode.js"></script>
 </body>
-
-
 </html>

@@ -3,14 +3,16 @@ const router = express.Router();
 
 let Teacher = require('../models/teacher');
 
+//home di registro
 router.get('/', function(req,res){
-    res.render('registro')
+    res.render('registro');
 })
 
+//prende in input l'id dello studente con il voto e la classe inserisce nel db il voto
 router.post('/addVote/:id', function (req, res){
     var vote = req.body.voto;
     var classe = req.body.classe;
-    var data = {vote:vote}
+    var data = {vote:vote};
     // Teacher.findByIdAndUpdate(
     //     {
     //         _id: req.user.id,
@@ -72,7 +74,7 @@ router.post('/addVote/:id', function (req, res){
             if (err) {console.log(err)}
             else {console.log(doc); res.json(doc)}
         }
-    )
+    );
 
     
 })

@@ -5,8 +5,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Teachy</title>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
       <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
       <link rel="stylesheet" href="css/style.css">
 </head>
@@ -27,7 +29,6 @@
                   <div class="nav-wrapper">
                         <ul>
                               <li><a href="/"><i class="fas fa-home"></i><span> </span>Home</a></li>
-
                               <% if (!user) { %>
                               <li><a href="/users/login"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
                               <li><a href="/users/login"><i class="fas fa-book"></i><span> </span>Registro</a></li>
@@ -36,92 +37,94 @@
                               <li><a class="signin link" href="/users/login" id="login"><i class="fas fa-sign-in-alt"></i><span></span>Login</a></li>
                               <% } else { %>
                               <li><a href="/manage"><i class="fas fa-cogs"></i><span> </span>Gestisci</a></li>
-                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>  
-                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li> 
-                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li> 
-                              <li class="itemsLike"> <i class="fas fa-user-circle"></i><%= user.name %></li>
+                              <li><a href="/registro"><i class="fas fa-book"></i><span> </span>Registro</a></li>
+                              <li><a href="/random"><i class="fas fa-random"></i><span> </span>Random Picker</a></li>
+                              <li><a href="/about"><i class="fas fa-info-circle"></i><span> </span>About</a></li>
+                              <li class="itemsLike"> <i class="fas fa-user-circle"></i>
+                                    <%= user.name %>
+                              </li>
                               <li><a class="signin link" href="/users/logout" id="logout"><i class="fas fa-sign-out-alt"></i><span></span>Logout</a></li>
                               <%} %>
-                         </ul>
+                        </ul>
                   </div>
             </nav>
       </div>
       <!-- Testo benvenuto-->
       <section class="welcome" id="welcomeText">
-        <% if (!user) { %>
-        <h2>Benvenuto in Teachy! Fai il <a href="/users/login">Login</a> o <a href="/users/register">registrati</a>.</h2>
-        <%} else {%>
-        <h2>Bentornato,
-        <%= user.username %>. </h2>
-        <%} %>
-  </section>
- 
-  <section class="cardContainer">
-      <div class="card">
-            <div class="cardBody">
-                  <div class="cardTitle">
-                        <h3>Gestisci</h3>
-                  </div>
-                  <div class="cardDesc">
-                        <p> Gestisci le tue classi. <br><br></p>
-                  </div>
-                  <% if (!user) { %>
+            <% if (!user) { %>
+            <h2>Benvenuto in Teachy! Fai il <a href="/users/login">Login</a> o <a href="/users/register">registrati</a>.</h2>
+            <%} else {%>
+            <h2>Bentornato,
+                  <%= user.username %>. </h2>
+            <%} %>
+      </section>
+
+      <section class="cardContainer">
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>Gestisci</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p> Gestisci le tue classi. <br><br></p>
+                        </div>
+                        <% if (!user) { %>
                         <a href="/users/login" class="button">Vai</a>
-                      <%} else {%>
+                        <%} else {%>
                         <a href="/manage" class="button">Vai</a>
-                      <%} %>  
+                        <%} %>
+                  </div>
             </div>
-      </div>
 
-      <div class="card">
-            <div class="cardBody">
-                  <div class="cardTitle">
-                        <h3>Random Picker</h3>
-                  </div>
-                  <div class="cardDesc">
-                        <p>Giorno dell'interrogazione? Lascia che il destino scelga.</p>
-                  </div>
-                  <% if (!user) { %>
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>Random Picker</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p>Giorno dell'interrogazione? Lascia che il destino scelga.</p>
+                        </div>
+                        <% if (!user) { %>
                         <a href="/users/login" class="button">Vai</a>
-                      <%} else {%>
+                        <%} else {%>
                         <a href="/random" class="button">Vai</a>
-                      <%} %>  
+                        <%} %>
+                  </div>
             </div>
-      </div>
 
-      <div class="card">
-            <div class="cardBody">
-                  <div class="cardTitle">
-                        <h3>Registro</h3>
-                  </div>
-                  <div class="cardDesc">
-                        <p>Aggiungi i voti nel tuo registro personale.</p>
-                  </div>
-                  <% if (!user) { %>
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>Registro</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p>Aggiungi i voti nel tuo registro personale.</p>
+                        </div>
+                        <% if (!user) { %>
                         <a href="/users/login" class="button">Vai</a>
-                      <%} else {%>
+                        <%} else {%>
                         <a href="/registro" class="button">Vai</a>
-                      <%} %>  
-            </div>
-      </div>
-
-      <div class="card">
-            <div class="cardBody">
-                  <div class="cardTitle">
-                        <h3>About</h3>
+                        <%} %>
                   </div>
-                  <div class="cardDesc">
-                        <p>Guida & FAQ.<br><br></p>
-                  </div>
-                  <% if (!user) { %>
-                        <a href="/about" class="button">Vai</a>
-                      <%} else {%>
-                        <a href="/about" class="button">Vai</a>
-                      <%} %>  
             </div>
-      </div>
 
-</section>
+            <div class="card">
+                  <div class="cardBody">
+                        <div class="cardTitle">
+                              <h3>About</h3>
+                        </div>
+                        <div class="cardDesc">
+                              <p>Guida & FAQ.<br><br></p>
+                        </div>
+                        <% if (!user) { %>
+                        <a href="/about" class="button">Vai</a>
+                        <%} else {%>
+                        <a href="/about" class="button">Vai</a>
+                        <%} %>
+                  </div>
+            </div>
+
+      </section>
 
 </body>
 </html>

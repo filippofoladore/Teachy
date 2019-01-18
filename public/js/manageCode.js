@@ -23,10 +23,10 @@ $(document).ready(function(){
                 var className = data['classes'][0]['cName'];
                 var studentiOrdinato = data['classes'][0]['student'];
                 studentiOrdinato.sort(function(a, b){
-                    var nameA=a.lname.toLowerCase(), nameB=b.lname.toLowerCase()
-                    if (nameA < nameB) return -1 
-                    if (nameA > nameB) return 1
-                    return 0 
+                    var nameA=a.lname.toLowerCase(), nameB=b.lname.toLowerCase();
+                    if (nameA < nameB) return -1; 
+                    if (nameA > nameB) return 1;
+                    return 0;
                 })
                 $('#invisibleId').append("<p>"+classId+"</p>");
                 // $("#className").append("<p> Nome della classe: " + className + '</p>');
@@ -47,7 +47,7 @@ $(document).ready(function(){
             name: $('#name_input').val(),
             lname: $('#lname_input').val(),
             gender: $("input[name='gender']:checked").val()
-        }
+        };
         e.preventDefault();
         $.ajax({
             url: '/manage/addStudent/' + $('#userInvisibleId').text(),
@@ -73,7 +73,7 @@ $(document).ready(function(){
 
     // ELIMINA CLASSE
     interact('.tap-target').on('doubletap', function (event) {
-        localStorage.setItem('classID', $('#invisibleId').text());
+        localStorage.setItem('classID', $('#invisibleId').text()); //nella view c'è un invisible id che contiene l'id della classe
         event.preventDefault();
         $.confirm({
             boxWidth: '400px',
@@ -89,14 +89,13 @@ $(document).ready(function(){
             autoClose: 'Annulla|8000',
             buttons: {
                 Procedi: function () {
-                    text: 'Elimina classe'
                     $.ajax({
                         url: '/manage/deleteClass/' + localStorage.getItem('classID'),
                         contentType: 'application/json',
                         type: 'POST',
                         success: function (data) {
-                            $('#classList').empty();
-                            for (var i=0; i<data['classes'].length; i++){
+                            $('#classList').empty(); //svuota e ri-riempie la lista con le classi aggiornate
+                            for (var i=0; i < data['classes'].length; i++){
                                 $('#classList').append(
                                     "<li class='classList tap-target'"+"id= ' " + data['classes'][i]['_id'] +"'>"+
                                     data['classes'][i]['cName']+
@@ -111,7 +110,6 @@ $(document).ready(function(){
                     })
                 },
                 Annulla: function () {
-                    text: 'Annulla'   
                 },
             }
         });
@@ -121,7 +119,7 @@ $(document).ready(function(){
     interact('#students li').on('doubletap', function(event){
         event.preventDefault();
         localStorage.setItem('studID', event.target.id);
-        localStorage.setItem('studClass', $('#invisibleId').text())
+        localStorage.setItem('studClass', $('#invisibleId').text());
 
         $.confirm({
             boxWidth: '400px',
@@ -136,19 +134,18 @@ $(document).ready(function(){
             backgroundDismiss: true,
             buttons: {
                 Procedi: function(){
-                    text: 'Elimina studente'
-                    var studNoSpace = localStorage.getItem('studID')
-                    var classNoSpace = localStorage.getItem('studClass')
-                    studNoSpace = localStorage.getItem('studID').replace(/\s/g, '');
-                    classNoSpace = localStorage.getItem('studClass').replace(/\s/g, '');
-                    var dataSent = {classid : classNoSpace}
+                    var studNoSpace = localStorage.getItem('studID');
+                    var classNoSpace = localStorage.getItem('studClass');
+                    studNoSpace = localStorage.getItem('studID').replace(/\s/g, ''); //elimina spazi nella stringa
+                    classNoSpace = localStorage.getItem('studClass').replace(/\s/g, ''); //elimina spazi nella stringa
+                    var dataSent = {classid : classNoSpace};
                     $.ajax({
                         type: 'POST',
                         contentType: 'application/json',
                         url: '/manage/deleteStudent/'+studNoSpace,
                         data: JSON.stringify(dataSent),
                         success: function() {
-                            $('#classList li').each(function () {
+                            $('#classList li').each(function () { //elimina studente, poi cerca la classe da cui proveninva lo studente e la clicca virtualmente per ricaricare gli studenti di quella determinata classe - lo stuedente eliminato
                                 var id = "";
                                 id = $(this).attr('id');
                                 if (localStorage.getItem('studClass') == id) {
@@ -159,9 +156,7 @@ $(document).ready(function(){
                         }
                     })
                 },
-                Annulla: function(){
-                    text: 'Annulla'
-                },
+                Annulla: function(){},
             }
         })
     })
@@ -171,6 +166,7 @@ $(document).ready(function(){
 }); //document ready brackets    
 
 window.onbeforeunload = function() {
+    //pulisce localstorage prima di chiudere effettivamente la finestra
     localStorage.clear();
     return;
   };

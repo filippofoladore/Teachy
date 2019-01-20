@@ -55,7 +55,11 @@
       </div>
 
       <div id="mainManage">
+                
             <div id="classList2" class="registro">
+                        <section>
+                                    <h1 id="registroText"> Il tuo registro</h1>
+                        </section> 
                   <% for(var i = 0; i<(user.classes.length); i++) { %>
                   <li class="classList tap-target" id="<%= user.classes[i].id %>">
                         <%= user.classes[i].cName %>

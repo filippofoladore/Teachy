@@ -79,7 +79,7 @@ nav ul li a {
     font-weight: 600;
 }
 
-.itemsLike {
+.itemsLike { /*per l'icona dell'omino con username*/
     display: inline-block;
     outline: none;
     color: #000;
@@ -96,25 +96,36 @@ nav ul li a {
 
 #nav:checked+.nav-btn i {
     background: #000;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease; /*quando il #nav è checkato esegue le funzioni sotto su hamburger menu*/
 }
 
-#nav:checked+.nav-btn i:nth-child(1) {
+#nav:checked+.nav-btn i:nth-child(1) { /*prima righetta ruotata per foramre la gamba della x*/
     transform: translateY(6px) rotate(180deg);
 }
 
-#nav:checked+.nav-btn i:nth-child(2) {
+#nav:checked+.nav-btn i:nth-child(2) { /*righetta in mezzo nascosta*/
     opacity: 0;
 }
 
-#nav:checked+.nav-btn i:nth-child(3) {
+#nav:checked+.nav-btn i:nth-child(3) { /*terza righetta ruotata per foramre la gamba della x*/
     transform: translateY(-6px) rotate(90deg);
 }
 
 /* It is general sibling combinator and similar to Adjacent sibling combinator.
 the difference is that the second selector does NOT have to immediately follow the first one means 
-It will select all elements that is preceded by the former selector. */
-#nav:checked~.nav-wrapper {
+It will select all elements that is preceded by the former selector. 
+es. h2 ~ p {color:red;} nell'esempio colora di rosso i paragrafi (p2 e p3) che vengono dopo h2 ma che non sono per forza adiacenti
+article
+h1 titolo1
+p p1
+h2 titolo 2
+p p2
+h3 titolo 3
+p p3*/
+/*in questo esempio quando il bottone hambuger è cliccato il wrapper (contenitore colorato di bianco) verrà mostrato (opacity) e portato in prima posizione zindex
+e verrranno anche portate in primo piano anche gli elmenti della navbar*/
+/*ascii 126*/
+#nav:checked~.nav-wrapper { 
     z-index: 9990;
     opacity: 1;
 }
@@ -122,39 +133,10 @@ It will select all elements that is preceded by the former selector. */
 #nav:checked~.nav-wrapper ul li a {
     opacity: 1;
     transform: translateX(0px);
-}
+} 
 
 .hidden {
     display: none;
-}
-
-/*animazioni della lista*/
-.nav-wrapper ul li:nth-child(1) a {
-    transition-delay: 0.1s;
-}
-
-.nav-wrapper ul li:nth-child(2) a {
-    transition-delay: 0.2s;
-}
-
-.nav-wrapper ul li:nth-child(3) a {
-    transition-delay: 0.3s;
-}
-
-.nav-wrapper ul li:nth-child(4) a {
-    transition-delay: 0.4s;
-}
-
-.nav-wrapper ul li:nth-child(5) a {
-    transition-delay: 0.5s;
-}
-
-.nav-wrapper ul li:nth-child(6) a {
-    transition-delay: 0.6s;
-}
-
-.nav-wrapper ul li:nth-child(7) a {
-    transition-delay: 0.67s;
 }
 
 
@@ -163,7 +145,7 @@ It will select all elements that is preceded by the former selector. */
             CARDS
 -------------------------------------------------*/
 #welcomeText {
-    font-size: 26px;
+    font-size: 20px;
     padding: 5px 6px 5px 6px;
     margin: 50px 30px 25px 30px;
 }
@@ -872,7 +854,7 @@ button.accordion.is-open:after { /* simbolo '-' quando aperto*/
 
     #welcomeText {
         color: #232323;
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
         margin-top: -20px;
         margin-left: 30px;
@@ -993,6 +975,12 @@ button.accordion.is-open:after { /* simbolo '-' quando aperto*/
 /*------------------------------------------------
             TABELLA STUDENTI
 -------------------------------------------------*/
+
+    #registroText {
+        font-size: 24px;
+        text-align: center;
+        margin-left: -40px;
+    }
     #studentsTable {
         margin-top: -35px;
     }
@@ -1065,7 +1053,7 @@ button.accordion.is-open:after { /* simbolo '-' quando aperto*/
     }
 
     #welcomeText {
-        font-size: 29px;
+        font-size: 17px;
     }
 
     #classAddForm label:after {

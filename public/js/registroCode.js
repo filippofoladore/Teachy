@@ -16,6 +16,20 @@ $(document).ready(function () {
         obj = []; //si svuota ogni volta che viene cliccata una classe
         var id = "";
         id = $(this).attr('id');
+        
+        //chiamata equivalente in XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+        var url = 'manage/classes/';
+        var param = id;
+        xhr.open('POST', url + param, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(JSON.parse(xhr.responseText));
+                d = JSON.parse(xhr.responseText)
+            }
+        }
+        xhr.send();
+       
         $.ajax({
             url: 'manage/classes/' + id,
             contentType: 'application/json',
@@ -155,3 +169,4 @@ window.onbeforeunload = function () {
     localStorage.clear();
     return;
 };  
+

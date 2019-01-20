@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
       return this.optional(element) 
         || value.length >= 5 //maggiore di 5 caratteri
         && /\d/.test(value) //un numero
-        && /[a-z]/i.test(value);
+        && /[a-z]/i.test(value); //caratteri
     }, 'La password deve essere di almeno 5 caratteri, contenente almeno un numero.');
 
     var validator = $("#signupForm").validate({

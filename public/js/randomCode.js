@@ -12,35 +12,31 @@ $(document).ready(function () {
     //randomizzazione della lista studenti della classe premuta
     $('#classList2 li').on('click', function () {
         let stud = []; //oggetto vuoto per tenere gli studenti
+        var response; //response della chiamata ajax
         localStorage.clear();
         localStorage.setItem('rID', $(this).attr('id')); //classeid da mandare al db
-        $.ajax({
-            url: 'random/getClass/' + localStorage.getItem('rID'),
-            contentType: 'application/json',
-            type: 'POST',
-            dataType: 'json',
-            success: function (data) {
-                //ricevuta i dati dal db si inseriscono nell'oggetto stud
-                for (let i = 0; i < data['classes'][0]['student'].length; i++) {
-                    stud.push({
-                        _id: data['classes'][0]['student'][i]['_id'],
-                        name: data['classes'][0]['student'][i]['name'],
-                        lname: data['classes'][0]['student'][i]['lname'],
+        var xhr;
+        xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 & this.status == 200) {
+                response = JSON.parse(this.responseText); //salvataggio risposta ajax
+                for (let i = 0; i < response['classes'][0]['student'].length; i++) {
+                    stud.push({ //aggiunge gli studenti all'oggetto che verrà randomizzato in seguito
+                        _id: response['classes'][0]['student'][i]['_id'],
+                        name: response['classes'][0]['student'][i]['name'],
+                        lname: response['classes'][0]['student'][i]['lname'],
                     });
                 }
-                $('#rand').empty(); //svuota il div che tiene l'istruzione (premi per randomizzare etc)
-                //repeat three times to prevent errors (always first non si sa)
-                // var randomStud = stud[Math.floor(Math.random() * stud.length)]
-                // console.log("Ite: " + k + randomStud.name + " " + randomStud.lname)
-                for (let k = 0; k < 3; k++) {
-                    var randomStud = stud[Math.floor(Math.random() * stud.length)];
-                    console.log("Ite: "+ k + randomStud.name + " " + randomStud.lname);
-                }
-                console.log(randomStud);
+                
+                $('#rand').empty();
+                var randomStud = stud[Math.floor(Math.random() * stud.length)]; //randomizzazione
+                //floor restituisce il numero intero arrotondato per difetto
+                //random ritorna numero pseudocasuale
                 $('#rand').append('<p> È stato estratto: <br>'+randomStud.name+" "+ randomStud.lname);
             }
-        })
-
+        }
+        xhr.open('POST', 'random/getClass/'+ localStorage.getItem('rID'), true)
+        xhr.send();
 })
 })
 

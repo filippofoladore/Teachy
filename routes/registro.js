@@ -13,69 +13,56 @@ router.post('/addVote/:id', function (req, res){
     var vote = req.body.voto;
     var classe = req.body.classe;
     var data = {vote:vote};
-    // Teacher.findByIdAndUpdate(
-    //     {
-    //         _id: req.user.id,
-    //         "classes": {$elemMatch: {_id:req.body.classe}},
-    //         "classes.student": {$elemMatch: {_id: req.params.id}}
-    //     },
-    //     {$addToSet: {"classes.0.student.$.grades": vote}},
-    //     (err, doc) => {
-    //         if (err) {console.log(err)}
-    //         else {console.log(doc); res.json(doc)}
-    //     }
-    // )
-    // Teacher.updateOne(
-    //     {_id: req.user.id, 
-    //     "classes": {
-    //         "$elemMatch": {
-    //             "_id": req.body.classe, "student._id":req.params.id
+    //aggiunge al primo
+    // Teacher.findOneAndUpdate(
+    //     {"_id": req.user.id,
+    // "classes._id": req.body.classe,
+    // "classes.student._id": req.params.id},
+    // {"$addToSet": {"classes.$.student.0.grades": vote}},
+    // {"upsert": true},
+    // (err, doc) => {
+    //             if (err) {console.log(err)}
+    //             else {console.log(doc); res.json(doc)}
     //         }
-    //     }},
-    //     {
-    //         $push: {"classes.$[outer].student.$[inner].grades": vote}
+    // )
 
+    //trovato ma non modificato
+    // Teacher.update(
+    //     {
+    //         "_id": req.user.id,
+    //         "classes": {
+    //             "$elemMatch": {"_id": req.body.classe, "student._id": req.params.id }
+    //         }
     //     },
     //     {
-    //         "arrayFilters": [{"outer._id": req.body.classe}, {"inner._id": req.params.id}],
+    //         "$addToSet": { "classes.$[a].student.$[b].grades": vote }
     //     },
+    //     { "arrayFilters": [{ "a._id": req.body.classe }, { "b._id": req.params.id }] , "upsert": true, "new": true},
+        
     //     (err, doc) => {
-    //         if (err) {console.log(err)}
-    //         else { console.log(doc); res.json(doc)}
+    //         if (err) { console.log(err) }
+    //         else { console.log(doc); res.json(doc) }
     //     }
     // )
-   
-    Teacher.findOneAndUpdate(
+
+    Teacher.updateOne(
         {
             "_id": req.user.id,
             "classes": {
-                "$elemMatch": {
-                    "_id": req.body.classe,
-                    "student._id": req.params.id
-                }
+                "$elemMatch": {_id: classe, "student._id": req.params.id}
             }
-        },
-
-        {
-            "$push": {
-                "classes.$[a].student.$[b].grades": vote
-            },
+            
         },
         {
-            "upsert":true,
-            "new":true,
-            "arrayFilters": [
-              { "a._id": classe },
-              { "b._id": req.params.id }
-            ]
-          },
+            "$push": { "classes.$[a].student.$[b].grades": parseInt(data.vote) }
+        },
+        { "arrayFilters": [{ "a.id": classe }, { "b.id": req.params.id }]},
         
         (err, doc) => {
-            if (err) {console.log(err)}
-            else {console.log(doc); res.json(doc)}
+            if (err) { console.log(err) }
+            else { console.log(doc); res.json(doc) }
         }
-    );
-
+    )
     
 })
 

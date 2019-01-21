@@ -847,6 +847,35 @@ button.accordion.is-open:after { /* simbolo '-' quando aperto*/
     .nav-btn i:nth-child(3) {
         margin-top: 4px;
     }
+
+    .nav-wrapper ul li:nth-child(1) a {
+        transition-delay: 0.1s;
+    }
+
+    .nav-wrapper ul li:nth-child(2) a {
+        transition-delay: 0.2s;
+    }
+
+    .nav-wrapper ul li:nth-child(3) a {
+        transition-delay: 0.3s;
+    }
+
+    .nav-wrapper ul li:nth-child(4) a {
+        transition-delay: 0.4s;
+    }
+
+    .nav-wrapper ul li:nth-child(5) a {
+        transition-delay: 0.5s;
+    }
+
+    .nav-wrapper ul li:nth-child(6) a {
+        transition-delay: 0.6s;
+    }
+
+    .nav-wrapper ul li:nth-child(7) a {
+        transition-delay: 0.67s;
+    }
+
   
     .itemsLike {
         transform: translateX(-80px);

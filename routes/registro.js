@@ -44,19 +44,19 @@ router.post('/addVote/:id', function (req, res){
     //         else { console.log(doc); res.json(doc) }
     //     }
     // )
-
-    Teacher.updateOne(
+    console.log(vote)
+    Teacher.update(
         {
             "_id": req.user.id,
             "classes": {
-                "$elemMatch": {_id: classe, "student._id": req.params.id}
+                "$elemMatch": {"_id": req.body.classe, "student._id": req.params.id}
             }
             
         },
         {
-            "$push": { "classes.$[a].student.$[b].grades": parseInt(data.vote) }
+            $addToSet: { "classes.$[a].student.$[b].grades": vote }
         },
-        { "arrayFilters": [{ "a.id": classe }, { "b.id": req.params.id }]},
+        { "arrayFilters": [{ "a.id": req.body.classe }, { "b.id": req.params.id }], upsert: true, multi: false},
         
         (err, doc) => {
             if (err) { console.log(err) }
